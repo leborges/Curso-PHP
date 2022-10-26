@@ -1,0 +1,38 @@
+.fonte {
+	font-family: Arial;
+}
+
+body {
+	background-color: rgba(0, 0, 0, .2);
+}
+
+h1 {
+	text-align: center;
+	text-decoration: underline;
+}
+
+h3 {
+	text-indent: 20px;
+}
+
+header {
+	margin: auto;
+	width: 800px;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 2px 5px 5px rgba(0, 0, 0, .5);
+}
+
+code {
+	color: rgb(0, 200, 0);
+}
+
+div.conteudo {
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 1.0);
+	background-color: rgba(0, 0, 0, .7);
+	margin: auto;
+	margin-top: 15px;
+	padding: 30px;
+	width: 780px;
+	color: white;
+}
