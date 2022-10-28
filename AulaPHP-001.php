@@ -41,6 +41,42 @@
 				echo "<br/>> [Number Format] valor de R$ " . number_format(5243,2,',','.');
 			 ?>
 		</code>
+		<p class="fonte">Aula - Operadores de Atribuição</p>
+		<code>
+			<?php 
+				$preco = $_GET['p'];
+				echo "> O preço desse produto é R$ ".number_format($preco,2,',','.');
+				
+				$preco += $preco*0.1;
+				echo "<br/>> E o novo preço com 10% de aumento será R$ ".number_format($preco,2,',','.');
+				
+				$preco = $_GET['p'];
+				$preco -= $preco*0.1;
+				echo "<br/>> E o novo preço com 10% de desconto será R$ ".number_format($preco,2,',','.');
+
+				#Referenciado variaveis
+				$a = 3;
+				$b = &$a;
+				echo '<br/><span style="color: white">Referenciando duas variaveis <b>a = 3</b> e <b>b = &$a</b></span>';
+				$a = 5;
+				echo "<br/>> Alterando a=$a a variavel automaticamente b=$b";
+
+				#Variaveis de variaveis
+				echo "<br/><span style='color: white'>Variaveis de variaveis</span>";
+				$site = "cursoemvideo";
+				$$site = "cursoPHP";
+				echo "<br/>> $site e $cursoemvideo";
+			 ?>
+		</code>
+		<p class="fonte">Aula - Operadores de Relacionais</p>
+		<code>
+			<?php 
+				$a = 7;
+				$b = "7";
+				$r = (($a===$b)?"SIM":"NÃO");
+				echo $r;
+			 ?>
+		</code>
 	</div>
 </body>
 </html>
