@@ -27,12 +27,60 @@ code {
 	color: rgb(0, 200, 0);
 }
 
+div.formulario {
+	margin-top: 20px;
+	margin-left: 532px;
+	position: relative;
+	float: left;
+	padding: 25px;
+	width: 310px;
+	background-color: grey;
+	color: white;
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 1.0);
+}
+
+div#formulario {
+	font-family: Arial;
+}
+
+div#formulario fieldset {
+	margin-bottom: 20px;
+}
+
+div#formulario input {
+	float: right;
+	margin-top: 3px;
+}
+
+div#formulario label {
+	float: left;
+	padding-top: 6px;
+	padding-right: 20px;
+}
+
+div#formulario select {
+	width: 177px;
+	float: right;
+	font-size: 12pt;
+	margin-top: 2px;
+	padding-top: 1px;
+	padding-right: 20px;
+}
+
+div#formulario button {
+	margin: 0px 10px 0px 130px;
+	padding: 5px;
+}
+
 div.conteudo {
+	float: right;
+	margin-top: 20px;
+	margin-right: 530px;
+	margin-left: 0px;
+	position: relative;
 	box-shadow: 0px 0px 6px rgba(0, 0, 0, 1.0);
 	background-color: rgba(0, 0, 0, .7);
-	margin: auto;
-	margin-top: 15px;
 	padding: 30px;
-	width: 780px;
+	width: 400px;
 	color: white;
 }
