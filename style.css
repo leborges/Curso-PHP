@@ -27,7 +27,7 @@ code {
 	color: rgb(0, 200, 0);
 }
 
-div.formulario {
+div#formulario {
 	margin-top: 20px;
 	margin-left: 532px;
 	position: relative;
@@ -45,6 +45,10 @@ div#formulario {
 
 div#formulario fieldset {
 	margin-bottom: 20px;
+}
+
+div#formulario legend {
+	font-weight: bold;
 }
 
 div#formulario input {

@@ -21,7 +21,7 @@
 	<header id="cabecalho">
 		<h1 class="fonte">Começando a testar comandos em PHP</h1>
 	</header>
-	<div class="formulario" id="formulario">
+	<div id="formulario">
 		<form method="get" autocomplete="off">
 			<fieldset>
 				<legend>Aula - Variaveis</legend>
@@ -45,7 +45,7 @@
 			<fieldset>
 				<legend>Aula - Operadores de Relacionais</legend>
 				<label for="cAno">Ano de nascimento:</label>
-				<input type="number" name="tAno" id="cAno" style="width: 100px;" max="2022" min="1900">
+				<input type="number" name="tAno" id="cAno" style="width: 100px;" max="2022" min="1900" placeholder="4 digitos">
 			</fieldset>
 			<fieldset>
 				<legend>Aula - HTML5 e PHP</legend>
@@ -62,7 +62,26 @@
 					</optgroup>
 				</select><br>
 				<label for="cCor">Cor:</label>
-				<input type="color" name="tCor" id="cCor" style="width: 177px;"><br>
+				<input type="color" name="tCor" id="cCor" value="#ffffff" style="width: 177px;"><br>
+			</fieldset>
+			<fieldset>
+				<legend>Aula - Estrutura Condicional if</legend>
+				<label for="cNota1">Nota 1:</label>
+				<input type="number" name="tNota1" id="cNota1" max="10" min="0" style="width: 170px;">
+				<label for="cNota2">Nota 2:</label>
+				<input type="number" name="tNota2" id="cNota2" max="10" min="0" style="width: 170px;">
+			</fieldset>
+			<fieldset>
+				<legend>Aula - Switch Case</legend>
+				<label for="cN3">Insira um número:</label>
+				<input type="number" name="tN3" id="cN3" style="width: 100px">
+				<label for="cOperacao" style="width: 250px;">Selecione uma opção:</label>
+				<input type="radio" name="tOperacao" id="dobro" style="float:left; width: 15px; margin-top: 7px; margin-left: 25px;" value="1" checked>
+				<label for="dobro">Dobro</label>
+				<input type="radio" name="tOperacao" id="cubo" style="float:left; width: 15px; margin-top: 7px;" value="2">
+				<label for="cubo">Cubo</label>
+				<input type="radio" name="tOperacao" id="raiz2" style="float:left; width: 15px; margin-top: 7px;" value="3">
+				<label for="raiz2">Raiz</label>
 			</fieldset>
 			<button type="submit">Enviar</button>
 		</form>
@@ -125,7 +144,7 @@
 				echo "<br/>> $site e $cursoemvideo";
 			 ?>
 		</code>
-		<p class="fonte">Aula - Operadores de Relacionais</p>
+		<p class="fonte">Aula - Operadores Relacionais</p>
 		<code>
 			<?php 
 				$x = 7;
@@ -144,6 +163,56 @@
 		<code>
 			<?php 
 				echo "<span class=texto>$texto</span>";
+			 ?>
+		</code>
+		<p class="fonte">Aula - Estrutura Condicional <b>if</b></p>
+		<code>
+			<?php 
+				$nota1 = $_GET['tNota1'];
+				$nota2 = $_GET['tNota2'];
+				$media = (($nota1 + $nota2)/2);
+
+				if ($media <= 5) {
+					$situacao = "REPROVADO";
+				}elseif ($media > 5 && $media <= 7) {
+					$situacao = "RECUPERAÇÃO";
+				}else {
+					$situacao = "APROVADO";
+				}
+				echo "> Suas notas foram $nota1 e $nota2, sua média é $media e está: $situacao.";
+			 ?>
+		</code>
+		<p class="fonte">Aula - Switch Case</p>
+		<code>
+			<?php 
+				$n3 = isset($_GET['tN3'])? $_GET['tN3'] : "1";
+				$op = isset($_GET['tOperacao'])? $_GET['tOperacao'] : "0";
+				switch ($op) {
+					case '1':
+						echo "> ".$n3*2;
+						break;
+					case '2':
+						echo "> ".pow($n3, 3);
+						break;
+					case '3':
+						echo "> ".sqrt($n3);
+						break;
+					default:
+						echo "> Número não informado";
+				}
+				switch ($op) {
+					case '1':
+					case '4':
+						echo "<br>> Tipo 1";
+						break;
+					case '3':
+					case '5':
+						echo "<br>> Tipo 2";
+						break;
+					default:
+						echo "<br>> Tipo 3";
+						break;
+				}
 			 ?>
 		</code>
 	</div>
