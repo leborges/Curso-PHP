@@ -2,9 +2,9 @@
 <html>
 <head>
 	<?php 
-		$texto = $_GET['tTexto'];
-		$tamanho = $_GET['tTam'];
-		$cor = $_GET['tCor'];
+		$texto = isset($_GET['tTexto'])?$_GET['tTexto']:"[Texto não informado]";
+		$tamanho = isset($_GET['tTam'])?$_GET['tTam']:"10pt";
+		$cor = isset($_GET['tCor'])?$_GET['tCor']:"red";
 	 ?>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -168,8 +168,8 @@
 		<p class="fonte">Aula - Estrutura Condicional <b>if</b></p>
 		<code>
 			<?php 
-				$nota1 = $_GET['tNota1'];
-				$nota2 = $_GET['tNota2'];
+				$nota1 = isset($_GET['tNota1'])?$_GET['tNota1']:"0";
+				$nota2 = isset($_GET['tNota2'])?$_GET['tNota2']:"0";
 				$media = (($nota1 + $nota2)/2);
 
 				if ($media <= 5) {
@@ -216,5 +216,9 @@
 			 ?>
 		</code>
 	</div>
+	<footer>
+		<button id="left"><a href="aulaphp-001.php">Voltar Página</a></button>
+		<button id="right"><a href="aulaphp-002.php">Próxima Página</a></button>
+	</footer>
 </body>
 </html>
