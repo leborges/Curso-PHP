@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php 
-		$texto = isset($_GET['tTexto'])?$_GET['tTexto']:"[Texto não informado]";
-		$tamanho = isset($_GET['tTam'])?$_GET['tTam']:"10pt";
-		$cor = isset($_GET['tCor'])?$_GET['tCor']:"red";
-	 ?>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Testando php</title>
-	<style type="text/css">
-		span.texto {
-			font-size: <?php echo $tamanho; ?>;
-			color: <?php echo $cor; ?>;
-		}
-	</style>
 </head>
 <body>
 	<header id="cabecalho">
@@ -26,9 +15,9 @@
 			<fieldset>
 				<legend>Aula - While</legend>
 				<label for="cN1">Inicio:</label>
-				<input type="number" name="tN1" id="cN1">
+				<input type="number" name="tN1" id="cN1" value="1">
 				<label for="cN2">Fim:</label>
-				<input type="number" name="tN2" id="cN2">
+				<input type="number" name="tN2" id="cN2" value="1">
 				<label>Incremento:</label>
 				<select name="tIncremento" id="cIncremento" style="width: 100px;">
 					<optgroup>
@@ -78,11 +67,11 @@
 		<p class="fonte">Aula - While</p>
 		<code>
 			<?php 
-				$n1 = isset($_GET['tN1'])?"1":$_GET['tN1'];
-				$n2 = isset($_GET['tN2'])?"10":$_GET['tN2'];
-				
+				$n1 = $_GET['tN1'];
+				$n2 = $_GET['tN2'];
 				$c = isset($_GET['tIncremento'])?$_GET['tIncremento']:"1";
 				$i = $n1;
+				
 				while ($i <= $n2) {
 					echo "$i ";
 					$i += $c;
@@ -177,8 +166,9 @@
 					# var_export(expression);
 
 			# WORDWRAP
-				$texto = ("> ".$_GET['tTextArea'])?"> Texto gerado automaticamente":$_GET['tTextArea'];
-				echo wordwrap($texto, 5, "<br>\n", true);
+				$texto = isset($_GET['tTextArea'])?$_GET['tTextArea']:"> Texto gerado automaticamente";
+				$quebra = isset($_GET['tQuebra'])?$_GET['tQuebra']:"20";
+				echo wordwrap($texto, $quebra, "<br>\n", true);
 
 			# STRLEN
 				$tamTexto = strlen($texto);
@@ -196,7 +186,7 @@
 					# ltrim(str);
 
 			# STR_WORD_COUNT
-				echo "<br>> O texto é [$texto] e usando o STR_WORD_COUNT obtemos: ".str_word_count($texto);
+				echo "<br>> O texto é $texto e usando o STR_WORD_COUNT obtemos: ".str_word_count($texto);
 			 ?>
 		</code>
 	</div>
