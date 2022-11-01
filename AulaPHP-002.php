@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="pt-BR">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -15,9 +15,9 @@
 			<fieldset>
 				<legend>Aula - While</legend>
 				<label for="cN1">Inicio:</label>
-				<input type="number" name="tN1" id="cN1" value="1">
+				<input type="number" name="tN1" id="cN1">
 				<label for="cN2">Fim:</label>
-				<input type="number" name="tN2" id="cN2" value="1">
+				<input type="number" name="tN2" id="cN2">
 				<label>Incremento:</label>
 				<select name="tIncremento" id="cIncremento" style="width: 100px;">
 					<optgroup>
@@ -28,7 +28,7 @@
 						<option value="5">5</option>
 					</optgroup>
 				</select>
-				<label>Tabuado do:</label>
+				<label>Tabuada do:</label>
 				<select name="tTabuada" id="cTabuada" style="width: 100px;">
 					<optgroup>
 						<option value="1">1</option>
@@ -40,7 +40,7 @@
 						<option value="7">7</option>
 						<option value="8">8</option>
 						<option value="9">9</option>
-						<option value="10">10</option>
+						<option value="10" selected>10</option>
 					</optgroup>
 				</select>
 			</fieldset>
@@ -56,7 +56,7 @@
 			<fieldset>
 				<legend>Aula - Funções String</legend>
 				<label for="cTextArea">Texto:</label>
-				<textarea name="tTextArea" id="cTextArea" placeholder="Digite seu texto aqui..." style="width: 209px"></textarea>
+				<textarea name="tTextArea" id="cTextArea" placeholder="Digite o texto aqui..." style="width: 209px"></textarea>
 				<label for="cQuebra">Quebra:</label>
 				<input type="number" name="tQuebra" id="cQuebra">
 			</fieldset>
@@ -67,9 +67,9 @@
 		<p class="fonte">Aula - While</p>
 		<code>
 			<?php 
-				$n1 = $_GET['tN1'];
-				$n2 = $_GET['tN2'];
-				$c = isset($_GET['tIncremento'])?$_GET['tIncremento']:"1";
+				$n1 = empty($_GET['tN1'])?"1":$_GET['tN1'];
+				$n2 = empty($_GET['tN2'])?"10":$_GET['tN2'];
+				$c = empty($_GET['tIncremento'])?"1":$_GET['tIncremento'];
 				$i = $n1;
 				
 				while ($i <= $n2) {
@@ -87,7 +87,7 @@
 				
 				echo "<br>";
 
-				$tab = isset($_GET['tTabuada'])?$_GET['tTabuada']:"10";
+				$tab = empty($_GET['tTabuada'])?"10":$_GET['tTabuada'];
 				$k = 1;
 				while ($k <= 10) {
 					echo "<br>$tab x $k = ".($tab*$k);
@@ -143,6 +143,7 @@
 		<code>
 			<?php 
 			# PRINT E VAR
+				#Função printf() : Permite exibir uma string com itens formatados.
 				$prod = "leite";
 				$preco = 6.99;
 				printf("> O valor do %s custa R$%.2f", $prod, $preco);
@@ -157,8 +158,9 @@
 				$v[2] = 8;
 				print_r($v);
 
+			# PRINT_R
+				#Função print_r() : Exibe coleções, objetos e variáveis compostas (vetores e matrizes) de maneira organizada.
 				echo "<br>";
-				
 				$v = array(1,2,3,4,5);
 				print_r($v);
 				# Também podemos substituir o print_r(); por:
@@ -166,15 +168,19 @@
 					# var_export(expression);
 
 			# WORDWRAP
-				$texto = isset($_GET['tTextArea'])?$_GET['tTextArea']:"> Texto gerado automaticamente";
-				$quebra = isset($_GET['tQuebra'])?$_GET['tQuebra']:"20";
+				#Função wordwrap() : Cria quebras de linha ou divisões em uma string em um tamanho especificado.
+				$texto = empty($_GET['tTextArea'])?"> Texto gerado automaticamente":$_GET['tTextArea'];
+				$quebra = empty($_GET['tQuebra'])?"20":$_GET['tQuebra'];
 				echo wordwrap($texto, $quebra, "<br>\n", true);
 
 			# STRLEN
+				#Função strlen() : Permite verificar o tamanho de uma string, contando seus caracteres (inclusive espaços em branco).
 				$tamTexto = strlen($texto);
 				echo "<br>> strlen retorna o tamanho da string: $tamTexto";
 
 			# TRIM
+				#Função ltrim() : Elimina espaços no início de uma string.
+				#Função rtrim() : Elimina espaços em branco no final de uma string.
 				$nome = " Leonardo   Borges ";
 				$tamTexto = strlen($nome);
 				echo "<br>> O texto é [$nome] e o tamanho é $tamTexto";
@@ -186,13 +192,54 @@
 					# ltrim(str);
 
 			# STR_WORD_COUNT
-				echo "<br>> O texto é $texto e usando o STR_WORD_COUNT obtemos: ".str_word_count($texto);
+				#Função str_word_count() : Conta quantas palavras uma string possui.
+				$novoTexto = "Curso em vídeo";
+				echo "<br>> O texto é $novoTexto e usando o STR_WORD_COUNT obtemos: ".str_word_count($novoTexto, 0);
+				// $v = str_word_count($novoTexto, 1);
+				// var_export($v);
+					# str_word_count(string, 0) Conta as palavras e retorna a quantidade de palavras.
+					# str_word_count(string, 1) Armazena as palavras dentro de um array.
+					# str_word_count(string, 2) Armazena as palavras dentro de um array, a primeira letra da palavra é a referencia do array.
+
+			# EXPLODE
+				#Função explode() : Quebra uma string e coloca os itens em um vetor.
+				$v1 = explode(" ", $novoTexto);
+				echo "<br>";
+				var_export($v1);
+
+			# STR_SPLIT
+				#Função str_split() : Coloca cada letra de uma string em uma posição de um vetor.
+				$v2 = str_split("téste");
+				echo "<br>";
+				var_export($v2);
+
+			# IMPLODE
+				#Função implode() : Transforma um vetor inteiro em uma string.
+				$v3 = array("Curso","em","Vídeo");
+				echo "<br>";
+				echo implode(" ", $v3);
+
+			# JOIN
+				echo "<br>";
+				echo join(" ", $v3);
+
+			# CHR
+				#Função chr() : Retorna um caractere de acordo com seu código ASCII passado como parâmetro.
+				echo "<br>";
+				$letra = chr(76);
+				echo "$letra";
+
+			# ORD
+				#Função ord() : Retorna o código ASCII de um caractere passado como parâmetro.
+				echo "<br>";
+				$chr = ord("L");
+				echo "$chr";
 			 ?>
 		</code>
 	</div>
 	<footer>
-		<button id="left"><a href="aulaphp-001.php">Voltar Página</a></button>
-		<button id="right"><a href="aulaphp-002.php">Próxima Página</a></button>
+		<button id="left"><a href="aulaphp-002.php">Voltar Página</a></button>
+		<button id="right"><a href="aulaphp-003.php">Próxima Página</a></button>
 	</footer>
 </body>
 </html>
