@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Testando php</title>
 </head>
-<body>
+<body style="height: 1500px;">
 	<header id="cabecalho">
 		<h1 class="fonte">Começando a testar comandos em PHP</h1>
 	</header>
@@ -55,10 +55,44 @@
 			</fieldset>
 			<fieldset>
 				<legend>Aula - Funções String</legend>
-				<label for="cTextArea">Texto:</label>
-				<textarea name="tTextArea" id="cTextArea" placeholder="Digite o texto aqui..." style="width: 209px"></textarea>
-				<label for="cQuebra">Quebra:</label>
-				<input type="number" name="tQuebra" id="cQuebra">
+				<fieldset>
+					<legend>Wordwrap</legend>
+					<label for="cTextArea">Texto:</label>
+					<textarea name="tTextArea" id="cTextArea" placeholder="Digite o texto aqui..." style="width: 176px"></textarea>
+					<label for="cQuebra">Quebra:</label>
+					<input type="number" name="tQuebra" id="cQuebra" style="width: 160px">
+				</fieldset>
+				<fieldset>
+					<legend>Strlen</legend>
+					<label for="cStrlen">Texto:</label>
+					<input type="text" name="tStrlen" id="cStrlen">
+				</fieldset>
+				<fieldset>
+					<legend>Trim</legend>
+					<label for="cTrim">Texto:</label>
+					<input type="text" name="tTrim" id="cTrim">
+				</fieldset>
+				<fieldset>
+					<legend>Str_word_count</legend>
+					<label for="cSWC">Texto:</label>
+					<textarea name="tSWC" id="cSWC" placeholder="Digite o texto aqui..." style="width: 176px"></textarea>
+				</fieldset>
+				<fieldset>
+					<legend>Str_split</legend>
+					<label for="cSplit">Texto:</label>
+					<input type="text" name="tSplit" id="cSplit">
+				</fieldset>
+				<fieldset>
+					<legend>CHR</legend>
+					<label for="cCHR">Número:</label>
+					<input type="number" name="tCHR" id="cCHR" max="90" min="65">
+				</fieldset>
+				<fieldset>
+					<legend>ORD</legend>
+					<label for="cORD">Caracter:</label>
+					<input type="text" name="tORD" id="cORD" maxlength="1" size="5">
+				</fieldset>
+				
 			</fieldset>
 			<button type="submit">Enviar</button>
 		</form>
@@ -78,7 +112,7 @@
 				}
 				
 				echo "<br><br>";
-				$i += -1;
+				$i -= $c;
 
 				do {
 					echo "$i ";
@@ -142,8 +176,10 @@
 		<p class="fonte">Aula - Funções String</p>
 		<code>
 			<?php 
-			# PRINT E VAR
+			# PRINTF E VAR
 				#Função printf() : Permite exibir uma string com itens formatados.
+				echo "<span style='color: white'># PRINTF E VAR</span><br>";
+				
 				$prod = "leite";
 				$preco = 6.99;
 				printf("> O valor do %s custa R$%.2f", $prod, $preco);
@@ -152,14 +188,15 @@
 					# %u para valores decimais(positivo)
 					# %f para valores reais
 					# %s para string
-				echo "<br>";
+
+			# PRINT_R
+				#Função print_r() : Exibe coleções, objetos e variáveis compostas (vetores e matrizes) de maneira organizada.
+				echo "<br><span style='color: white'># PRINT_R</span><br>";
+				
 				$v[0] = 4;
 				$v[1] = 3;
 				$v[2] = 8;
 				print_r($v);
-
-			# PRINT_R
-				#Função print_r() : Exibe coleções, objetos e variáveis compostas (vetores e matrizes) de maneira organizada.
 				echo "<br>";
 				$v = array(1,2,3,4,5);
 				print_r($v);
@@ -169,77 +206,94 @@
 
 			# WORDWRAP
 				#Função wordwrap() : Cria quebras de linha ou divisões em uma string em um tamanho especificado.
-				$texto = empty($_GET['tTextArea'])?"> Texto gerado automaticamente":$_GET['tTextArea'];
+				echo "<br><span style='color: white'># WORDWRAP</span><br>";
+				
+				$texto = empty($_GET['tTextArea'])?"Texto gerado automaticamente":$_GET['tTextArea'];
 				$quebra = empty($_GET['tQuebra'])?"20":$_GET['tQuebra'];
-				echo wordwrap($texto, $quebra, "<br>\n", true);
+				echo "> ".wordwrap($texto, $quebra, "<br>\n", true);
 
 			# STRLEN
 				#Função strlen() : Permite verificar o tamanho de uma string, contando seus caracteres (inclusive espaços em branco).
-				$tamTexto = strlen($texto);
-				echo "<br>> strlen retorna o tamanho da string: $tamTexto";
+				echo "<br><span style='color: white'># STRLEN</span><br>";
+				
+				$strlen = empty($_GET['tStrlen'])?"Texto":$_GET['tStrlen'];
+				$tamTexto = strlen($strlen);
+				echo "> Tamanho da string: $tamTexto";
 
 			# TRIM
 				#Função ltrim() : Elimina espaços no início de uma string.
 				#Função rtrim() : Elimina espaços em branco no final de uma string.
-				$nome = " Leonardo   Borges ";
-				$tamTexto = strlen($nome);
-				echo "<br>> O texto é [$nome] e o tamanho é $tamTexto";
-				$novoNome = trim($nome);
-				$tamTexto = strlen($novoNome);
-				echo "<br>> Agora o texto é [$nome] e o tamanho é $tamTexto";
+				echo "<br><span style='color: white'># TRIM</span><br>";
+				
+				$trim = empty($_GET['tTrim'])?"  Leonardo  ":$_GET['tTrim'];
+				$tamTexto = strlen($trim);
+				echo "> O texto é [$trim] e o tamanho é $tamTexto";
+				$novoTrim = trim($trim);
+				$tamTexto = strlen($novoTrim);
+				echo "<br>> Agora o texto é [$novoTrim] e o tamanho é $tamTexto";
 				# Também temos as funções:
 					# rtrim(str);
 					# ltrim(str);
 
 			# STR_WORD_COUNT
 				#Função str_word_count() : Conta quantas palavras uma string possui.
-				$novoTexto = "Curso em vídeo";
-				echo "<br>> O texto é $novoTexto e usando o STR_WORD_COUNT obtemos: ".str_word_count($novoTexto, 0);
+				echo "<br><span style='color: white'># STR_WORD_COUNT</span><br>";
+				
+				$swc = empty($_GET['tSWC'])?"LEONARDO BORGES":$_GET['tSWC'];
+				echo "> O texto é $swc e usando o STR_WORD_COUNT obtemos: ".str_word_count($swc, 0);
 				// $v = str_word_count($novoTexto, 1);
 				// var_export($v);
+				# Outras opções utilizando o STR_WORD_COUNT:
 					# str_word_count(string, 0) Conta as palavras e retorna a quantidade de palavras.
 					# str_word_count(string, 1) Armazena as palavras dentro de um array.
 					# str_word_count(string, 2) Armazena as palavras dentro de um array, a primeira letra da palavra é a referencia do array.
 
 			# EXPLODE
 				#Função explode() : Quebra uma string e coloca os itens em um vetor.
-				$v1 = explode(" ", $novoTexto);
-				echo "<br>";
+				echo "<br><span style='color: white'># EXPLODE</span><br>";
+
+				$v1 = explode(" ", "LEONARDO BORGES");
 				var_export($v1);
 
 			# STR_SPLIT
 				#Função str_split() : Coloca cada letra de uma string em uma posição de um vetor.
-				$v2 = str_split("téste");
-				echo "<br>";
-				var_export($v2);
+				echo "<br><span style='color: white'># STR_SPLIT</span><br>";
+				
+				$split = empty($_GET['tSplit'])?"LEO":$_GET['tSplit'];
+				$v2 = str_split($split);
+				print_r($v2);
 
 			# IMPLODE
 				#Função implode() : Transforma um vetor inteiro em uma string.
+				echo "<br><span style='color: white'># IMPLODE</span><br>";
+				
 				$v3 = array("Curso","em","Vídeo");
-				echo "<br>";
 				echo implode(" ", $v3);
 
 			# JOIN
-				echo "<br>";
+				echo "<br><span style='color: white'># JOIN</span><br>";
+				
 				echo join(" ", $v3);
 
 			# CHR
 				#Função chr() : Retorna um caractere de acordo com seu código ASCII passado como parâmetro.
-				echo "<br>";
-				$letra = chr(76);
-				echo "$letra";
+				echo "<br><span style='color: white'># CHR</span><br>";
+				
+				$chr = empty($_GET['tCHR'])?"76":$_GET['tCHR'];
+				echo chr($chr);
 
 			# ORD
 				#Função ord() : Retorna o código ASCII de um caractere passado como parâmetro.
-				echo "<br>";
-				$chr = ord("L");
-				echo "$chr";
+				echo "<br><span style='color: white'># ORD</span><br>";
+				
+				$ord = empty($_GET['tORD'])?"L":$_GET['tORD'];
+				echo ord($ord);
 			 ?>
 		</code>
 	</div>
 	<footer>
-		<button id="left"><a href="aulaphp-002.php">Voltar Página</a></button>
-		<button id="right"><a href="aulaphp-003.php">Próxima Página</a></button>
+		<button id="left" style="top: 1450px"><a href="aulaphp-002.php">Voltar Página</a></button>
+		<button id="right" style="top: 1450px"><a href="aulaphp-003.php">Próxima Página</a></button>
 	</footer>
 </body>
 </html>

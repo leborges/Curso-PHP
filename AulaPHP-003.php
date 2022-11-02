@@ -18,11 +18,21 @@
 		</form>
 	</div>
 	<div class="conteudo">
-		
+		<p class="fonte">Teste Andreia</p>
+		<code>
+			<?php 
+				$nome = "Andreia Hoffmann";
+				$palavras = str_word_count($nome, 0);
+				$nasc = 2000;
+				$idade = 2022 - $nasc;
+				// var_export($palavras);
+				echo "$nome tem $palavras palavras no nome.";
+			 ?>
+		</code>
 	</div>
 	<footer>
-		<button id="left"><a href="aulaphp-001.php">Voltar Página</a></button>
-		<button id="right"><a href="aulaphp-002.php">Próxima Página</a></button>
+		<button id="left"><a href="aulaphp-002.php">Voltar Página</a></button>
+		<button id="right"><a href="aulaphp-003.php">Próxima Página</a></button>
 	</footer>
 </body>
 </html>
