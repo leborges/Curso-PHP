@@ -44,9 +44,6 @@
 					<input type="text" name="tReplaceBy" id="cReplaceBy" style="width:130px;" value="<?php echo (isset($_GET['tReplaceBy'])?$_GET['tReplaceBy']:"") ?>">
 				</fieldset>
 			</fieldset>
-			<fieldset>
-				<legend>Aula - Vetores e Matrizes</legend>
-			</fieldset>
 			<button type="submit">Enviar</button>
 		</form>
 	</div>
